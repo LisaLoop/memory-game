@@ -6,8 +6,11 @@ var gameDeck = document.getElementById("deck");
 var nodeList = document.querySelectorAll('.card');
 var cardList = Array.from(nodeList); //turns nodelist into array
 var currentCard;
+var lastCard;
 var openCards = [];
 var closeCard;
+var cardClasses;
+var cardSymbol;
 
 
 /*
@@ -32,18 +35,20 @@ function shuffle(array) {
     return array;
 }
 
-//event listener on the gameboard, listening for clicks on its LI children 
-gameDeck.addEventListener("click", function(e){
+function flipCard(){
+    //event listener on the gameboard, listening for clicks on its children 
+        gameDeck.addEventListener("click", function(e){
         currentCard = e.target; 
-     if (currentCard.className === "card") {  // ← verifies target is desired element
-        currentCard.classList.add('open'); //add classes open and show after a time
-        currentCard.classList.add('show'); 
-        console.log(currentCard.className);
-        closeCard(currentCard);
-    }
-
-});
-
+        //gets classNames of i el inside currentCard
+        if (currentCard.className === "card") {  // ← verifies target is desired element
+            currentCard.classList.add('open'); //add classes open and show to card on click
+            currentCard.classList.add('show'); 
+        } 
+        cardSymbol = currentCard.children[0].className;
+        console.log(cardSymbol);
+    });
+       
+} 
 
 function closeCard(card){
        setTimeout(function() { 
@@ -52,11 +57,18 @@ function closeCard(card){
         }, 1000);
 }
 
-function checkGuess(){
-
+function checkCards(flipCard){
+    // currentCard = e.target; 
+    //gets classNames of i el inside currentCard
+    // cardSymbol = currentCard.children[0].className;
+    // console.log(cardSymbol);
+    // console.log(func);
+    // var checkCard1 = flipCard();
+    // console.log(checkCard1);
 }
 
-
+flipCard();
+checkCards();
 // shuffle(cardList);
 
 /*
