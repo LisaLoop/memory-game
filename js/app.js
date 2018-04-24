@@ -3,10 +3,11 @@
  */
 
 var gameDeck = document.getElementById("deck");
-console.log(gameDeck);
+// console.log(gameDeck);
 //returns node list
 var cardList = document.querySelectorAll('.card');
 var currentCard;
+var closeCard;
 
 
 /*
@@ -35,13 +36,18 @@ function shuffle(array) {
 gameDeck.addEventListener("click", function(e){
         currentCard = e.target; 
      if (currentCard.nodeName === 'LI') {  // ← verifies target is desired element
-        // console.log('LI with class clicked ' + currentCard.className);
         if (currentCard.classList.contains('open')){
-            console.log("open card");
+            // console.log("open card");
+ 
         } else {
-            currentCard.classList.add('open');
-            currentCard.classList.add('show');
+            currentCard.classList.add('open'); //shows blue side of card
+            currentCard.classList.add('show'); //shows favicon on card
 
+             setTimeout(function() { 
+                currentCard.classList.remove('open'); 
+                currentCard.classList.remove('show'); 
+
+            }, 1000);
         }
 
     }
