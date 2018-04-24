@@ -3,10 +3,10 @@
  */
 
 var gameDeck = document.getElementById("deck");
-// console.log(gameDeck);
-//returns node list
-var cardList = document.querySelectorAll('.card');
+var nodeList = document.querySelectorAll('.card');
+var cardList = Array.from(nodeList); //turns nodelist into array
 var currentCard;
+var openCards = [];
 var closeCard;
 
 
@@ -32,32 +32,30 @@ function shuffle(array) {
     return array;
 }
 
-//event listener on the gameboard, listening for clicks on its children 
+//event listener on the gameboard, listening for clicks on its LI children 
 gameDeck.addEventListener("click", function(e){
         currentCard = e.target; 
-     if (currentCard.nodeName === 'LI') {  // ← verifies target is desired element
-        if (currentCard.classList.contains('open')){
-            // console.log("open card");
- 
-        } else {
-            currentCard.classList.add('open'); //shows blue side of card
-            currentCard.classList.add('show'); //shows favicon on card
-
-             setTimeout(function() { 
-                currentCard.classList.remove('open'); 
-                currentCard.classList.remove('show'); 
-
-            }, 1000);
-        }
-
+     if (currentCard.className === "card") {  // ← verifies target is desired element
+        currentCard.classList.add('open'); //add classes open and show after a time
+        currentCard.classList.add('show'); 
+        console.log(currentCard.className);
+        closeCard(currentCard);
     }
 
 });
 
-    //loops over list of cards
-    // for(var i =0; i < cardList.length; i++){
-        // console.log("my card is " + i);
-    // }
+
+function closeCard(card){
+       setTimeout(function() { 
+            card.classList.remove('show'); 
+            card.classList.remove('open'); 
+        }, 1000);
+}
+
+function checkGuess(){
+
+}
+
 
 // shuffle(cardList);
 
