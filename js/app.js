@@ -8,10 +8,6 @@ console.log(gameDeck);
 var cardList = document.querySelectorAll('.card');
 var currentCard;
 
-//loops over list of cards
-for(var i =0; i < cardList.length; i++){
-	// console.log("my card is " + i);
-}
 
 /*
  * Display the cards on the page
@@ -37,16 +33,27 @@ function shuffle(array) {
 
 //event listener on the gameboard, listening for clicks on its children 
 gameDeck.addEventListener("click", function(e){
-     if (e.target.nodeName === 'LI'|| 'I') {  // ← verifies target is desired element
-        console.log('LI with class clicked ' + e.target.className);
-        // console.log(e.target.addClass("open"));
+        currentCard = e.target; 
+     if (currentCard.nodeName === 'LI') {  // ← verifies target is desired element
+        // console.log('LI with class clicked ' + currentCard.className);
+        if (currentCard.classList.contains('open')){
+            console.log("open card");
+        } else {
+            currentCard.classList.add('open');
+            currentCard.classList.add('show');
+
+        }
 
     }
 
-  
+});
 
-    });
+    //loops over list of cards
+    // for(var i =0; i < cardList.length; i++){
+        // console.log("my card is " + i);
+    // }
 
+// shuffle(cardList);
 
 /*
  * set up the event listener for a card. If a card is clicked:
