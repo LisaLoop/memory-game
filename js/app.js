@@ -1,7 +1,17 @@
 /*
  * Create a list that holds all of your cards
  */
-var myCards = [];
+
+var gameDeck = document.getElementById("deck");
+console.log(gameDeck);
+//returns node list
+var cardList = document.querySelectorAll('.card');
+var currentCard;
+
+//loops over list of cards
+for(var i =0; i < cardList.length; i++){
+	// console.log("my card is " + i);
+}
 
 /*
  * Display the cards on the page
@@ -24,6 +34,18 @@ function shuffle(array) {
 
     return array;
 }
+
+//event listener on the gameboard, listening for clicks on its children 
+gameDeck.addEventListener("click", function(e){
+     if (e.target.nodeName === 'LI'|| 'I') {  // ← verifies target is desired element
+        console.log('LI with class clicked ' + e.target.className);
+        // console.log(e.target.addClass("open"));
+
+    }
+
+  
+
+    });
 
 
 /*
