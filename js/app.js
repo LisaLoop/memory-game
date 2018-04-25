@@ -43,26 +43,23 @@ function flipCard(){
             currentCard.classList.add('open'); //add classes open and show to card on click
             currentCard.classList.add('show'); 
         } 
+
         //gets classnames (fa) from current card and pushes it into array
         cardSymbol = currentCard.children[0].className;
         openCards.push(cardSymbol);
-        console.log(openCards);
-        // return cardSymbol
         for (var i = 0; i < openCards.length; i++ ){
-            // if (openCards[])
-            console.log(openCards.length);
             if(openCards.length === 2){
-                // console.log("these cards are the same");
-            // } else {
                 console.log("2 cards revealed");
-                // openCards = [];
                 // closeCard(currentCard);
                 if(openCards[0] === openCards[1]){
                     console.log("it's a match");
-                } 
-                // else {
-                    // closeCard(currentCard);
-                // }
+                    console.log(openCards[0]);
+                    console.log(openCards[1]);
+                    openCards = [];
+                } else {
+                    openCards = [];
+                    closeCard(currentCard);
+                }
             }
         }
     });
