@@ -5,7 +5,7 @@
 var gameDeck = document.getElementById("deck");
 var nodeList = document.querySelectorAll('.card');
 var cardList = Array.from(nodeList); //turns nodelist into array
-var currentCard;
+// var currentCard;
 var lastCard;
 var openCards = [];
 var closeCard;
@@ -23,7 +23,6 @@ var cardSymbol;
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -38,16 +37,36 @@ function shuffle(array) {
 function flipCard(){
     //event listener on the gameboard, listening for clicks on its children 
         gameDeck.addEventListener("click", function(e){
-        currentCard = e.target; 
+        var currentCard = e.target; 
         //gets classNames of i el inside currentCard
         if (currentCard.className === "card") {  // ← verifies target is desired element
             currentCard.classList.add('open'); //add classes open and show to card on click
             currentCard.classList.add('show'); 
         } 
+        //gets classnames (fa) from current card and pushes it into array
         cardSymbol = currentCard.children[0].className;
-        console.log(cardSymbol);
+        openCards.push(cardSymbol);
+        console.log(openCards);
+        // return cardSymbol
+        for (var i = 0; i < openCards.length; i++ ){
+            // if (openCards[])
+            console.log(openCards.length);
+            if(openCards.length === 2){
+                // console.log("these cards are the same");
+            // } else {
+                console.log("2 cards revealed");
+                // openCards = [];
+                // closeCard(currentCard);
+                if(openCards[0] === openCards[1]){
+                    console.log("it's a match");
+                } 
+                // else {
+                    // closeCard(currentCard);
+                // }
+            }
+        }
     });
-       
+      
 } 
 
 function closeCard(card){
@@ -57,18 +76,21 @@ function closeCard(card){
         }, 1000);
 }
 
-function checkCards(flipCard){
-    // currentCard = e.target; 
-    //gets classNames of i el inside currentCard
-    // cardSymbol = currentCard.children[0].className;
-    // console.log(cardSymbol);
-    // console.log(func);
-    // var checkCard1 = flipCard();
-    // console.log(checkCard1);
-}
+// function checkCards(arr){
+    // console.log(openCards);
+    // console.log(openCards);
+    // for (var i = 0; i < arr.length; i++ ){
+
+    // }
+    // if (arr[0] === arr[1]){
+    //     console.log("it's a match");
+    // } else {
+    //     closeCard(this);
+    // }
+// }
 
 flipCard();
-checkCards();
+// checkCards(flipCard);
 // shuffle(cardList);
 
 /*
