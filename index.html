@@ -8,7 +8,7 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body onload="init()">
 
     <div class="container">
         <header>
@@ -28,8 +28,11 @@
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
+        <div id="destination">
+            
+        </div>
 
-        <ul class="deck" id="deck">
+        <ul style="display: none" class="deck" id="source">
             <li class="card">
                 <i class="fa fa-diamond"></i>
             </li>
