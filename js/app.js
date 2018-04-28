@@ -5,6 +5,8 @@ var cardList = Array.from(nodeList); //turns nodelist into array
 var openCards = [];
 var closeCard;
 var playerMoveCount =0;
+var moveCounter = document.querySelector('.moves');
+
 
 function flipCards(object){
 // event listener on the gameboard, listening for clicks on its children 
@@ -56,14 +58,20 @@ function checkCards(){
 function scoreBoard(){
     // increase player score
     playerMoveCount += 1;
-    var moveCounter = document.querySelector('.moves');
     moveCounter.innerHTML = playerMoveCount;  
 }
 
 function newGame(){
-    var refresh = document.querySelector('.fa-repeat');
-
+    var refresh = document.querySelector('.restart');
+    refresh.addEventListener("click", function() {
+    playerMoveCount = 0;
+    moveCounter.innerHTML = playerMoveCount;
+    console.log("move count is " + playerMoveCount);
+    openCards = [];
+     });
 }
+newGame();
+
 
 function closeCard(card){
        setTimeout(function() { 
