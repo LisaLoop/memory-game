@@ -4,17 +4,16 @@ var nodeList = document.querySelectorAll('.card');
 var cardList = Array.from(nodeList); //turns nodelist into array
 var openCards = [];
 var closeCard;
+var playerMoveCount =0;
 
 function flipCards(object){
 // event listener on the gameboard, listening for clicks on its children 
     object.addEventListener("click", function(e) {
         var currentCard = e.target;
-        // gets classNames of i el inside currentCard
         if (currentCard.className === "card") {  // verifies target is desired element
             currentCard.classList.add('open'); //add classes open and show to card on click
             currentCard.classList.add('show'); 
             openCards.push(currentCard);
-            // console.log(openCards);
             checkCards();
         } 
     });
@@ -27,18 +26,19 @@ function shuffle(array) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
         //swap each element with a random location
-    /*table */temporaryValue = array[currentIndex]; //pen1
-   /*hand1 */ array[currentIndex] = array[randomIndex]; //pen2
-    /*hand2 */array[randomIndex] = temporaryValue; 
+        temporaryValue = array[currentIndex]; 
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue; 
     }
 
     return array; 
 }
 
 function checkCards(){
+
     if(openCards.length === 2){
+        scoreBoard();
         if(openCards[0].children[0].className === openCards[1].children[0].className){
-            // increase player score
             console.log("it's a match");
         } else {
             console.log("not a match");
@@ -46,10 +46,17 @@ function checkCards(){
             closeCard(openCards[1]);
 
         }
-        console.log(openCards);
         openCards = [];
-
     }
+}
+
+function scoreBoard(){
+    // increase player score
+    playerMoveCount += 1;
+    var moveCounter = document.querySelector('.moves');
+    moveCounter.innerHTML = playerMoveCount;
+
+   
 }
 
 function closeCard(card){
@@ -70,6 +77,7 @@ function init(){ //makes sure dom is loaded before running js
     flipCards(cards);
 
 }
+
 
 
 
