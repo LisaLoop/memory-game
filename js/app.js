@@ -37,7 +37,6 @@ function shuffle(array) {
 }
 
 function checkCards(){
-
     if(openCards.length === 2){
         scoreBoard();
         if(openCards[0].children[0].className === openCards[1].children[0].className){
@@ -62,16 +61,20 @@ function scoreBoard(){
 }
 
 function newGame(){
+    //resets move counter
     var refresh = document.querySelector('.restart');
     refresh.addEventListener("click", function() {
     playerMoveCount = 0;
     moveCounter.innerHTML = playerMoveCount;
-    console.log("move count is " + playerMoveCount);
-    openCards = [];
-     });
+    // flips any open or matched cards closed
+    for (var i=0; i < cardList.length; i++){
+        cardList[i].classList.remove("show");
+        cardList[i].classList.remove("open");
+        cardList[i].classList.remove("match");
+        }
+    });
 }
 newGame();
-
 
 function closeCard(card){
        setTimeout(function() { 
@@ -81,6 +84,7 @@ function closeCard(card){
 }
 
 function init(){ //makes sure dom is loaded before running js
+ 
     var shuffledCards = shuffle(cardList);
     var cards = document.createElement("ul");
     cards.className = "deck";
