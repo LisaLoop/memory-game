@@ -40,6 +40,9 @@ function checkCards(){
         scoreBoard();
         if(openCards[0].children[0].className === openCards[1].children[0].className){
             console.log("it's a match");
+            openCards[0].classList.add('match');
+            openCards[1].classList.add('match');
+
         } else {
             console.log("not a match");
             closeCard(openCards[0]);
@@ -54,9 +57,12 @@ function scoreBoard(){
     // increase player score
     playerMoveCount += 1;
     var moveCounter = document.querySelector('.moves');
-    moveCounter.innerHTML = playerMoveCount;
+    moveCounter.innerHTML = playerMoveCount;  
+}
 
-   
+function newGame(){
+    var refresh = document.querySelector('.fa-repeat');
+
 }
 
 function closeCard(card){
