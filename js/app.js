@@ -6,6 +6,8 @@ var openCards = [];
 var closeCard;
 var playerMoveCount =0;
 var moveCounter = document.querySelector('.moves');
+var refresh = document.querySelector('.restart');
+
 
 
 function flipCards(object){
@@ -61,9 +63,17 @@ function scoreBoard(){
 }
 
 function newGame(){
-    //resets move counter
-    var refresh = document.querySelector('.restart');
+    // select all the cards
+    var cardz = document.querySelector('ul.deck');
+    if (cardz){
+        var deck = document.getElementsByClassName("deck");
+        for (var i=0; i < 1; i++){
+            deck[i].remove();
+        }
+    }
+    //listens for click on refresh icon
     refresh.addEventListener("click", function() {
+   //resets move counter
     playerMoveCount = 0;
     moveCounter.innerHTML = playerMoveCount;
     // flips any open or matched cards closed
@@ -73,8 +83,9 @@ function newGame(){
         cardList[i].classList.remove("match");
         }
     });
+      
 }
-newGame();
+// newGame();
 
 function closeCard(card){
        setTimeout(function() { 
@@ -84,7 +95,8 @@ function closeCard(card){
 }
 
 function init(){ //makes sure dom is loaded before running js
- 
+    refresh.addEventListener("click", init);
+    newGame();
     var shuffledCards = shuffle(cardList);
     var cards = document.createElement("ul");
     cards.className = "deck";
