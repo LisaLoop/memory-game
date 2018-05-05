@@ -3,11 +3,10 @@ var gameDeck = document.getElementById("source");
 var nodeList = document.querySelectorAll('.card');
 var cardList = Array.from(nodeList); //turns nodelist into array
 var openCards = [];
-var closeCard;
+// var closeCard;
 var playerMoveCount =0;
 var moveCounter = document.querySelector('.moves');
 var refresh = document.querySelector('.restart');
-
 
 
 function flipCards(object){
@@ -47,7 +46,7 @@ function checkCards(){
             openCards[1].classList.add('match');
 
         } else {
-            console.log("not a match");
+            // console.log("not a match");
             closeCard(openCards[0]);
             closeCard(openCards[1]);
 
@@ -56,16 +55,34 @@ function checkCards(){
     }
 }
 
+
+
 function scoreBoard(){
     // increase player score
     playerMoveCount += 1;
     moveCounter.innerHTML = playerMoveCount;  
 }
 
+function starRating(){
+    console.log(playerMoveCount);
+    var stars = document.querySelector('.stars');
+    var starsArr = Array.from(stars.children); // converts html collection to array
+      if (playerMoveCount < 1 && playerMoveCount < 3){
+        console.log("show 3 stars")
+        
+      } else {
+        console.log("no stars!"); 
+        }    
+}
+
+
+starRating();
+
 function newGame(){
     // select all the cards
     var cardz = document.querySelector('ul.deck');
     if (cardz){
+        //if there's more than 1 deck, remove it - prevents multiple decks
         var deck = document.getElementsByClassName("deck");
         for (var i=0; i < 1; i++){
             deck[i].remove();
@@ -85,7 +102,6 @@ function newGame(){
     });
       
 }
-// newGame();
 
 function closeCard(card){
        setTimeout(function() { 
@@ -105,7 +121,6 @@ function init(){ //makes sure dom is loaded before running js
     }
     document.getElementById("destination").appendChild(cards); 
     flipCards(cards);
-
 }
 
 
