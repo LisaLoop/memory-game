@@ -53,6 +53,7 @@ function checkCards(){
         }
         openCards = [];
     }
+    starRating();
 }
 
 
@@ -67,12 +68,17 @@ function starRating(){
     console.log(playerMoveCount);
     var stars = document.querySelector('.stars');
     var starsArr = Array.from(stars.children); // converts html collection to array
-      if (playerMoveCount < 1 && playerMoveCount < 3){
+      if (playerMoveCount === 0 && playerMoveCount < 3){
         console.log("show 3 stars")
         
-      } else {
-        console.log("no stars!"); 
+      } else if (playerMoveCount < 4 && playerMoveCount < 5){
+        console.log("two stars!"); 
         }    
+        else  if (playerMoveCount < 5 && playerMoveCount < 6) {
+            console.log("one star");
+        } else {
+            console.log("no stars!");
+        }
 }
 
 
