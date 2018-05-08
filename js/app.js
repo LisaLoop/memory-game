@@ -63,8 +63,6 @@ function checkCards(){
 
 }
 
-
-
 function scoreBoard(){
     // increase player score
     playerMoveCount += 1;
