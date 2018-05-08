@@ -44,7 +44,13 @@ function checkCards(){
             console.log("it's a match");
             openCards[0].classList.add('match');
             openCards[1].classList.add('match');
-
+            // var matchedSets = [];
+            // console.log(openCards);
+            var matchedSets = document.getElementsByClassName('match');
+            console.log(matchedSets);
+            if (matchedSets.length === 16){
+                alert("You won in " + playerMoveCount + " moves. Congratulations.");
+            }
         } else {
             // console.log("not a match");
             closeCard(openCards[0]);
@@ -54,6 +60,7 @@ function checkCards(){
         openCards = [];
     }
     starRating();
+
 }
 
 
@@ -64,27 +71,38 @@ function scoreBoard(){
     moveCounter.innerHTML = playerMoveCount;  
 }
 
+var stars = document.querySelector('.stars');
+var starsArr = Array.from(stars.children); // converts html collection to array
 function starRating(){
-    console.log(playerMoveCount);
-    var stars = document.querySelector('.stars');
-    var starsArr = Array.from(stars.children); // converts html collection to array
-      if (playerMoveCount === 0 && playerMoveCount < 3){
-        console.log("show 3 stars")
-        
-      } else if (playerMoveCount < 4 && playerMoveCount < 5){
-        console.log("two stars!"); 
-        }    
-        else  if (playerMoveCount < 5 && playerMoveCount < 6) {
-            console.log("one star");
-        } else {
-            console.log("no stars!");
-        }
+    //if less than 4 show 3 stars
+  if (playerMoveCount < 8) {
+    // if less than 8 show 2 stars
+  } else if (playerMoveCount < 10) {
+        var firstStar = starsArr[2].children;
+        firstStar[0].style.color = 'transparent';
+    }
+    // if less than 16 show 1 star    
+    else if (playerMoveCount < 20) {
+        var secondStar = starsArr[1].children;
+        secondStar[0].style.color = 'transparent';
+
+    } else {
+        //else no stars
+        var thirdStar = starsArr[0].children;
+        thirdStar[0].style.color = 'transparent';
+        alert("Sorry, you lost! Hit refresh to try again.");
+    }
 }
 
 
 starRating();
 
 function newGame(){
+    //star rating set to 3 stars
+    for(var i = 0; i < starsArr.length; i++){
+        var newStar = starsArr[i].children;
+        newStar[0].style.color = "black";
+    }
     // select all the cards
     var cardz = document.querySelector('ul.deck');
     if (cardz){
