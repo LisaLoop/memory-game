@@ -3,10 +3,24 @@ var gameDeck = document.getElementById("source");
 var nodeList = document.querySelectorAll('.card');
 var cardList = Array.from(nodeList); //turns nodelist into array
 var openCards = [];
-// var closeCard;
 var playerMoveCount =0;
 var moveCounter = document.querySelector('.moves');
 var refresh = document.querySelector('.restart');
+
+var timerEl = document.querySelector('span.timer');
+var timer = setInterval(myTimer, 1000);
+var updatedTime = 0;
+
+function myTimer() {
+    updatedTime = updatedTime + 1;
+    timerEl.innerHTML = updatedTime;
+    // console.log(updatedTime);
+}
+
+
+var stopTime = clearInterval(myTimer);
+
+
 
 
 function flipCards(object){
@@ -41,18 +55,16 @@ function checkCards(){
     if(openCards.length === 2){
         scoreBoard();
         if(openCards[0].children[0].className === openCards[1].children[0].className){
-            console.log("it's a match");
             openCards[0].classList.add('match');
             openCards[1].classList.add('match');
-            // var matchedSets = [];
-            // console.log(openCards);
             var matchedSets = document.getElementsByClassName('match');
-            console.log(matchedSets);
             if (matchedSets.length === 16){
-                alert("You won in " + playerMoveCount + " moves. Congratulations.");
+                stopTime;
+                console.log("first "+ stopTime);
+                alert("You won in "+ updatedTime + " seconds and " + playerMoveCount + " moves. Congratulations.");
+                console.log("second "+ stopTime);
             }
         } else {
-            // console.log("not a match");
             closeCard(openCards[0]);
             closeCard(openCards[1]);
 
@@ -64,7 +76,7 @@ function checkCards(){
 }
 
 function scoreBoard(){
-    // increase player score
+    // increase player move count
     playerMoveCount += 1;
     moveCounter.innerHTML = playerMoveCount;  
 }
@@ -88,7 +100,7 @@ function starRating(){
         //else no stars
         var thirdStar = starsArr[0].children;
         thirdStar[0].style.color = 'transparent';
-        alert("Sorry, you lost! Hit refresh to try again.");
+        alert("Sorry, you lost! Hit the refresh to try again.");
     }
 }
 
@@ -96,6 +108,7 @@ function starRating(){
 starRating();
 
 function newGame(){
+    updatedTime = 0;
     //star rating set to 3 stars
     for(var i = 0; i < starsArr.length; i++){
         var newStar = starsArr[i].children;
@@ -142,6 +155,7 @@ function init(){ //makes sure dom is loaded before running js
         cards.appendChild(shuffledCards[i]);
     }
     document.getElementById("destination").appendChild(cards); 
+    timer;
     flipCards(cards);
 }
 
