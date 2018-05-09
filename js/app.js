@@ -8,24 +8,21 @@ var moveCounter = document.querySelector('.moves');
 var refresh = document.querySelector('.restart');
 
 var timerEl = document.querySelector('span.timer');
-var timer = setInterval(myTimer, 1000);
 var updatedTime = 0;
 
 function myTimer() {
     updatedTime = updatedTime + 1;
     timerEl.innerHTML = updatedTime;
-    // console.log(updatedTime);
 }
-
-
-var stopTime = clearInterval(myTimer);
-
-
 
 
 function flipCards(object){
 // event listener on the gameboard, listening for clicks on its children 
     object.addEventListener("click", function(e) {
+        // timer;
+        setInterval(myTimer, 1000);
+        // console.log("timer is happening "+ timer);
+
         var currentCard = e.target;
         if (currentCard.className === "card") {  // verifies target is desired element
             currentCard.classList.add('open'); //add classes open and show to card on click
@@ -59,10 +56,13 @@ function checkCards(){
             openCards[1].classList.add('match');
             var matchedSets = document.getElementsByClassName('match');
             if (matchedSets.length === 16){
-                stopTime;
-                console.log("first "+ stopTime);
-                alert("You won in "+ updatedTime + " seconds and " + playerMoveCount + " moves. Congratulations.");
-                console.log("second "+ stopTime);
+                // stopTime;
+                clearInterval(myTimer);
+                console.log("stoptime is happening "+stopTime);
+
+                alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. Congratulations.");
+                // clearInterval(myTimer);
+
             }
         } else {
             closeCard(openCards[0]);
@@ -155,8 +155,9 @@ function init(){ //makes sure dom is loaded before running js
         cards.appendChild(shuffledCards[i]);
     }
     document.getElementById("destination").appendChild(cards); 
-    timer;
     flipCards(cards);
+    // clearInterval(myTimer);
+   
 }
 
 
