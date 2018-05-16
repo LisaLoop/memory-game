@@ -2,22 +2,17 @@
 var gameDeck = document.getElementById("source");
 var nodeList = document.querySelectorAll('.card');
 var cardList = Array.from(nodeList); //turns nodelist into array
-var openCards = [];
-var playerMoveCount =0;
+var playerMoveCount = 0;
 var moveCounter = document.querySelector('.moves');
 var refresh = document.querySelector('.restart');
-
 var timerEl = document.querySelector('span.timer');
-var updatedTime = 0;
 var firstClick = true;
-
 
 
 function myTimer() {
     updatedTime = updatedTime + 1;
     timerEl.innerHTML = updatedTime;
 }
-
 
 
 function flipCards(object){
@@ -110,7 +105,9 @@ function starRating(){
 starRating();
 
 function newGame(){
-    updatedTime = 0;
+    openCards = [];
+    //timer starts at 0
+    updatedTime = -1;
     //star rating set to 3 stars
     for(var i = 0; i < starsArr.length; i++){
         var newStar = starsArr[i].children;
