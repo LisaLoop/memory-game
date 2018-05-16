@@ -9,6 +9,9 @@ var refresh = document.querySelector('.restart');
 
 var timerEl = document.querySelector('span.timer');
 var updatedTime = 0;
+var firstClick = true;
+
+
 
 function myTimer() {
     updatedTime = updatedTime + 1;
@@ -16,12 +19,14 @@ function myTimer() {
 }
 
 
+
 function flipCards(object){
 // event listener on the gameboard, listening for clicks on its children 
     object.addEventListener("click", function(e) {
-        // timer;
-        setInterval(myTimer, 1000);
-        // console.log("timer is happening "+ timer);
+        if (firstClick){
+            setInterval(myTimer, 1000);
+            firstClick = false;
+        }
 
         var currentCard = e.target;
         if (currentCard.className === "card") {  // verifies target is desired element
@@ -56,12 +61,9 @@ function checkCards(){
             openCards[1].classList.add('match');
             var matchedSets = document.getElementsByClassName('match');
             if (matchedSets.length === 16){
-                // stopTime;
                 clearInterval(myTimer);
-                console.log("stoptime is happening "+stopTime);
 
                 alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. Congratulations.");
-                // clearInterval(myTimer);
 
             }
         } else {
@@ -156,7 +158,6 @@ function init(){ //makes sure dom is loaded before running js
     }
     document.getElementById("destination").appendChild(cards); 
     flipCards(cards);
-    // clearInterval(myTimer);
    
 }
 
