@@ -7,19 +7,25 @@ var moveCounter = document.querySelector('.moves');
 var refresh = document.querySelector('.restart');
 var timerEl = document.querySelector('span.timer');
 var firstClick = true;
-
+var updatedTime = 0;
+var startTimer;
 
 function myTimer() {
     updatedTime = updatedTime + 1;
     timerEl.innerHTML = updatedTime;
 }
 
+function myStopFunction() {
+    clearInterval(startTimer);
+}
+
+
 
 function flipCards(object){
 // event listener on the gameboard, listening for clicks on its children 
     object.addEventListener("click", function(e) {
         if (firstClick){
-            setInterval(myTimer, 1000);
+            startTimer = setInterval(function(){ myTimer() }, 1000);
             firstClick = false;
         }
 
@@ -56,10 +62,9 @@ function checkCards(){
             openCards[1].classList.add('match');
             var matchedSets = document.getElementsByClassName('match');
             if (matchedSets.length === 16){
-                clearInterval(myTimer);
-
                 alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. Congratulations.");
-
+                myStopFunction();
+                updatedTime = 0;
             }
         } else {
             closeCard(openCards[0]);
@@ -97,7 +102,11 @@ function starRating(){
         //else no stars
         var thirdStar = starsArr[0].children;
         thirdStar[0].style.color = 'transparent';
+        myStopFunction();
+        updatedTime = 0;
+
         alert("Sorry, you lost! Hit the refresh to try again.");
+
     }
 }
 
@@ -106,8 +115,11 @@ starRating();
 
 function newGame(){
     openCards = [];
-    //timer starts at 0
     updatedTime = -1;
+    myStopFunction();
+    startTimer;
+    firstClick = true;
+    //timer starts at 0
     //star rating set to 3 stars
     for(var i = 0; i < starsArr.length; i++){
         var newStar = starsArr[i].children;
@@ -147,6 +159,8 @@ function closeCard(card){
 function init(){ //makes sure dom is loaded before running js
     refresh.addEventListener("click", init);
     newGame();
+    myTimer();
+    // stopTimer;
     var shuffledCards = shuffle(cardList);
     var cards = document.createElement("ul");
     cards.className = "deck";
