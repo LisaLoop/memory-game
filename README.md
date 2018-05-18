@@ -1,20 +1,10 @@
 # Memory Game Project
 
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
-
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Download the project and open the index.html file. Match all of the tiles in fewer than 20 moves to win the game. Reset the game by clicking on the reset icon in the upper right of the gameboard.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Contributors 
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+This repository came with starter code for Udacity students. Lisa Lehrman wrote all the game logic except for the shuffle function, which was found on stackOverflow.
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
