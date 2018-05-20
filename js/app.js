@@ -62,7 +62,7 @@ function checkCards(){
             openCards[1].classList.add('match');
             var matchedSets = document.getElementsByClassName('match');
             if (matchedSets.length === 16){
-                alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. Congratulations.");
+                alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. You earned " + winStars + " star(s). Congratulations.");
                 myStopFunction();
                 updatedTime = 0;
             }
@@ -82,21 +82,24 @@ function scoreBoard(){
     playerMoveCount += 1;
     moveCounter.innerHTML = playerMoveCount;  
 }
-
+var winStars;
 var stars = document.querySelector('.stars');
 var starsArr = Array.from(stars.children); // converts html collection to array
 function starRating(){
     //if less than 4 show 3 stars
   if (playerMoveCount < 8) {
+    winStars = 3;
     // if less than 8 show 2 stars
   } else if (playerMoveCount < 10) {
         var firstStar = starsArr[2].children;
         firstStar[0].style.color = 'transparent';
+        winStars = 2;
     }
-    // if less than 16 show 1 star    
+    // if less than 20 show 1 star    
     else if (playerMoveCount < 20) {
         var secondStar = starsArr[1].children;
         secondStar[0].style.color = 'transparent';
+        winStars = 1;
 
     } else {
         //else no stars
