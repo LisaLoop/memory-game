@@ -62,7 +62,7 @@ function checkCards(){
             openCards[1].classList.add('match');
             var matchedSets = document.getElementsByClassName('match');
             if (matchedSets.length === 16){
-                alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. You earned " + winStars + " star(s). Congratulations.");
+                alert("You won in " + updatedTime + " seconds and " + playerMoveCount + " moves. You earned " + winStars + " star(s). Congratulations. Do you want to play again? Press the refresh button to start a new game.");
                 myStopFunction();
                 updatedTime = 0;
             }
